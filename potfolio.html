@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NAMAN Aneja Portfolio</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+    @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f5f5f5;
+      color: #333;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+      font-size: 16px;
+    }
+    a {
+      text-decoration: none;
+      color: #00bcd4;
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #007a99;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      padding: 0 15px;
+    }
+    header {
+      background: #222;
+      color: #fff;
+      padding: 15px 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      animation: fadeInDown 0.8s ease forwards;
+    }
+    .logo img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    .logo img:hover {
+      transform: scale(1.1);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+    }
+    nav ul li a {
+      font-weight: 600;
+      font-size: 18px;
+      position: relative;
+      padding: 5px 0;
+    }
+    nav ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      left: 0;
+      bottom: 0;
+      background-color: #00bcd4;
+      transition: width 0.3s ease;
+    }
+    nav ul li a:hover::after,
+    nav ul li a.active::after {
+      width: 100%;
+    }
+
+    #hero {
+      background: url(IMG-20250808-WA0030.jpg) no-repeat center center/cover;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      position: relative;
+      padding-top: 80px;
+      animation: fadeIn 1.2s ease forwards;
+      justify-content: flex-end;
+      padding-right: 50px;
+    }
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      z-index: 0;
+    }
+    .hero-content {
+      position: relative;
+      max-width: 600px;
+      opacity: 0;
+      animation: fadeInUp 1.5s forwards ease;
+      animation-delay: 0.3s;
+      text-align: right;
+      z-index: 1;
+    }
+    .hero-content h1 {
+      font-size: 56px;
+      margin-bottom: 15px;
+      font-weight: 700;
+      animation: slideUp 1s forwards ease;
+      animation-delay: 0.5s;
+      line-height: 1.1;
+    }
+    .hero-content h1 span {
+      color: #00bcd4;
+      text-shadow: 0 0 10px #00bcd4aa;
+    }
+    .hero-content p {
+      font-size: 22px;
+      margin: 20px 0 30px;
+      animation: slideUp 1s forwards ease;
+      animation-delay: 0.7s;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    .btn {
+      background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%);
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,188,212,0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: inline-block;
+    }
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 10px 25px rgba(0,188,212,0.7);
+    }
+
+    .section {
+      padding: 100px 0 80px;
+      opacity: 0;
+      animation: fadeInUp 1s forwards ease;
+      animation-delay: 0.3s;
+    }
+    .section h2 {
+      font-size: 36px;
+      margin-bottom: 25px;
+      text-align: center;
+      color: #222;
+      opacity: 0;
+      animation: fadeInUp 1s forwards ease;
+      animation-delay: 0.5s;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .section p {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+      line-height: 1.8;
+      opacity: 0;
+      animation: fadeInUp 1s forwards ease;
+      animation-delay: 0.7s;
+      font-weight: 400;
+      color: #555;
+    }
+
+    .projects-grid {
+      display: grid;
+      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      margin-top: 40px;
+    }
+    .project-card {
+      background: #fff;
+      padding: 25px 30px;
+      border-left: 6px solid #00bcd4;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+      border-radius: 10px;
+      cursor: default;
+      animation: fadeSlideUp 0.7s forwards ease;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    .project-card:nth-child(1) {
+      animation-delay: 0.6s;
+    }
+    .project-card:nth-child(2) {
+      animation-delay: 0.8s;
+    }
+    .project-card:nth-child(3) {
+      animation-delay: 1s;
+    }
+    .project-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 25px rgba(0,0,0,0.18);
+    }
+    .project-card h3 {
+      font-weight: 700;
+      color: #00bcd4;
+      font-size: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .project-card h3 i {
+      color: #0097a7;
+    }
+    .project-card p {
+      color: #555;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.4;
+    }
+
+    .socials {
+      margin-top: 25px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeInUp 1s forwards ease;
+      animation-delay: 1.2s;
+    }
+    .socials a {
+      margin: 0 18px;
+      color: #00bcd4;
+      font-weight: 600;
+      font-size: 20px;
+      transition: color 0.3s ease;
+      opacity: 0;
+      animation: fadeInUp 1s forwards ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .socials a:nth-child(1) { animation-delay: 1.3s; }
+    .socials a:nth-child(2) { animation-delay: 1.4s; }
+    .socials a:hover {
+      color: #005f73;
+    }
+    .socials a i {
+      font-size: 22px;
+    }
+
+    footer {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      padding: 30px 0;
+      margin-top: 50px;
+      opacity: 0;
+      animation: fadeInUp 1s forwards ease;
+      animation-delay: 1.5s;
+      font-weight: 400;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0 }
+      100% { opacity: 1 }
+    }
+    @keyframes fadeInDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes slideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes pulseFadeIn {
+      0% {
+        opacity: 0;
+        box-shadow: 0 0 0 0 rgba(0,188,212, 0);
+      }
+      50% {
+        opacity: 1;
+        box-shadow: 0 0 0 20px rgba(0,188,212, 0);
+      }
+      70% {
+        box-shadow: 0 0 0 20px rgba(0,188,212, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(0,188,212, 0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 12px;
+      }
+      #hero {
+        justify-content: center;
+        padding: 80px 20px;
+        text-align: center;
+      }
+      .hero-content {
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-content h1 {
+        font-size: 40px;
+      }
+      .hero-content p {
+        font-size: 18px;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <h1 class="logo"><img src="Screenshot 2025-09-20 202328.png" alt="Naman Aneja Logo" /></h1>
+    <nav>
+      <ul>
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm <span>Naman Aneja</span></h1>
+      <p>Frontend Developer | Video Editor</p>
+      <a href="#projects" class="btn">Take a Look at My Work</a>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>I'm passionate about building beautiful, responsive websites that offer smooth user experiences. I specialize in HTML and CSS, and I also enjoy creating engaging video content in my free time.</p>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+  <div class="container">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3><i class="fas fa-laptop-code"></i> Portfolio Website</h3>
+        <p>A fully responsive portfolio site crafted with HTML and CSS to showcase my skills and projects.</p>
+        <a href="https://github.com/namananeja007" target="_blank" class="btn" style="margin-top: 10px;">View on GitHub</a>
+      </div>
+      <div class="project-card">
+        <h3><i class="fas fa-gamepad"></i> The Bleeding Path</h3>
+        <p>A thrilling 2D platformer where sacrifice means survival. Play as an ancient warrior exploring cursed temples,
+           facing tough enemies and losing health, stamina, and limbs along the way.I made this game in a hackathon with a great team of three</p>
+        <a href="https://github.com/Blitzdevdaddy/the-bleeding-path" target="_blank" class="btn" style="margin-top: 10px;">GitHub Repo</a>
+      </div>
+      <div class="project-card">
+        <h3><i class="fas fa-video"></i> Fest Promotion Reels</h3>
+        <p>Creative promotional reels made for college events, designed to capture attention and build excitement through engaging video editing.</p>
+        <a href="https://www.instagram.com/yugaantar.sst/?e=09914d04-b429-443d-b06f-0975930051a9&g=5" target="_blank" class="btn" style="margin-top: 10px;">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <p>If you'd like to connect, collaborate, or just say hello, feel free to reach out to me through social media or email.</p>
+      <div class="socials">
+        <a href="https://linkedin.com/in/namananeja" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
+        <a href="https://github.com/namananeja007" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+        <a href="mailto:namananeja0786@gmail.com" target="_blank"><i class="fas fa-envelope"></i>Gmail</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Naman Aneja. All rights reserved.
+  </footer>
+</body>
+</html>
