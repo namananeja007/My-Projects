@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>NAMAN Aneja Portfolio</title>
+  <title>NAMAN ANEJA Portfolio</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
     @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
-
     * {
       margin: 0;
       padding: 0;
@@ -15,16 +14,23 @@
     }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
+      background-color: #ffffff;
+      color: #333333;
       scroll-behavior: smooth;
       line-height: 1.6;
       font-size: 16px;
+       position: sticky;
+      top: 0;
+      z-index: 1000;
     }
     a {
       text-decoration: none;
-      color: #00bcd4;
-      transition: color 0.3s ease;
+      color: #ffffff;
+      transition: color 0.3s ease, transform 0.3s ease;
+      animation: fadeIn 0.5s ease forwards;
+    }
+    a:hover {
+      transform: scale(1.05);
     }
     a:hover {
       color: #007a99;
@@ -34,6 +40,7 @@
       max-width: 1100px;
       margin: auto;
       padding: 0 15px;
+     
     }
     header {
       background: #222;
@@ -44,6 +51,7 @@
       align-items: center;
       justify-content: space-between;
       animation: fadeInDown 0.8s ease forwards;
+      position: relative;
     }
     .logo img {
       height: 80px;
@@ -51,9 +59,11 @@
       border-radius: 50%;
       transition: transform 0.3s ease;
       cursor: pointer;
+      margin-right: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
     .logo img:hover {
-      transform: scale(1.1);
+      transform: scale(1.3);
     }
 
     nav ul {
@@ -80,6 +90,51 @@
     nav ul li a:hover::after,
     nav ul li a.active::after {
       width: 100%;
+    }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 6px;
+      cursor: pointer;
+      z-index: 999;
+    }
+    .hamburger span {
+      width: 28px;
+      height: 3px;
+      background: #fff;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+    .hamburger.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: flex;
+      }
+
+      nav ul {
+        position: absolute;
+        top: 80px;
+        right: 0;
+        width: 100%;
+        flex-direction: column;
+        background: #222;
+        padding: 25px 0;
+        gap: 20px;
+        text-align: center;
+        display: none;
+      }
+
+      nav ul.show {
+        display: flex;
+      }
     }
 
     #hero {
@@ -145,7 +200,7 @@
     }
     .btn:hover {
       transform: scale(1.1);
-      box-shadow: 0 10px 25px rgba(0,188,212,0.7);
+      box-shadow: 0 10px 25px rgba(6, 21, 23, 0.7);
     }
 
     .section {
@@ -157,8 +212,13 @@
     .section h2 {
       font-size: 36px;
       margin-bottom: 25px;
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      border-bottom: 3px solid #00bcd4;
       text-align: center;
-      color: #222;
+      width: 100%;
+      color: #000000;
       opacity: 0;
       animation: fadeInUp 1s forwards ease;
       animation-delay: 0.5s;
@@ -171,7 +231,7 @@
       text-align: center;
       line-height: 1.8;
       opacity: 0;
-      animation: fadeInUp 1s forwards ease;
+      animation: fadeInUp 0.5s forwards ease;
       animation-delay: 0.7s;
       font-weight: 400;
       color: #555;
@@ -186,7 +246,7 @@
     .project-card {
       background: #fff;
       padding: 25px 30px;
-      border-left: 6px solid #00bcd4;
+      border-left: 6px solid #257e8a;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
@@ -196,17 +256,12 @@
       animation: fadeSlideUp 0.7s forwards ease;
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 10px;
     }
-    .project-card:nth-child(1) {
-      animation-delay: 0.6s;
-    }
-    .project-card:nth-child(2) {
-      animation-delay: 0.8s;
-    }
-    .project-card:nth-child(3) {
-      animation-delay: 1s;
-    }
+    .project-card:nth-child(1) { animation-delay: 0.6s; }
+    .project-card:nth-child(2) { animation-delay: 0.8s; }
+    .project-card:nth-child(3) { animation-delay: 1s; }
+    .project-card:nth-child(4) { animation-delay: 1.2s; }
     .project-card:hover {
       transform: scale(1.05);
       box-shadow: 0 15px 25px rgba(0,0,0,0.18);
@@ -250,12 +305,8 @@
     }
     .socials a:nth-child(1) { animation-delay: 1.3s; }
     .socials a:nth-child(2) { animation-delay: 1.4s; }
-    .socials a:hover {
-      color: #005f73;
-    }
-    .socials a i {
-      font-size: 22px;
-    }
+    .socials a:hover { color: #005f73; }
+    .socials a i { font-size: 22px; }
 
     footer {
       background: #222;
@@ -271,96 +322,35 @@
       letter-spacing: 0.05em;
     }
 
-    @keyframes fadeIn {
-      0% { opacity: 0 }
-      100% { opacity: 1 }
-    }
+    @keyframes fadeIn { 0% { opacity: 0 } 100% { opacity: 1 } }
     @keyframes fadeInDown {
-      0% {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     @keyframes slideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     @keyframes fadeSlideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    @keyframes pulseFadeIn {
-      0% {
-        opacity: 0;
-        box-shadow: 0 0 0 0 rgba(0,188,212, 0);
-      }
-      50% {
-        opacity: 1;
-        box-shadow: 0 0 0 20px rgba(0,188,212, 0);
-      }
-      70% {
-        box-shadow: 0 0 0 20px rgba(0,188,212, 0);
-      }
-      100% {
-        box-shadow: 0 0 0 0 rgba(0,188,212, 0);
-      }
-    }
-
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        gap: 12px;
-      }
-      #hero {
-        justify-content: center;
-        padding: 80px 20px;
-        text-align: center;
-      }
-      .hero-content {
-        max-width: 100%;
-        text-align: center;
-      }
-      .hero-content h1 {
-        font-size: 40px;
-      }
-      .hero-content p {
-        font-size: 18px;
-      }
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
+
 <body>
   <header id="header">
     <h1 class="logo"><img src="Screenshot 2025-09-20 202328.png" alt="Naman Aneja Logo" /></h1>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <nav>
       <ul>
         <li><a href="#hero" class="active">Home</a></li>
@@ -374,7 +364,7 @@
   <section id="hero">
     <div class="hero-content">
       <h1>Hi, I'm <span>Naman Aneja</span></h1>
-      <p>Frontend Developer | Video Editor</p>
+      <p>Full Stack Developer| Video Editor</p>
       <a href="#projects" class="btn">Take a Look at My Work</a>
     </div>
   </section>
@@ -382,49 +372,78 @@
   <section id="about" class="section">
     <div class="container">
       <h2>About Me</h2>
-      <p>I'm passionate about building beautiful, responsive websites that offer smooth user experiences. I specialize in HTML and CSS, and I also enjoy creating engaging video content in my free time.</p>
+      <p>I'm passionate about building beautiful, responsive websites that offer smooth user experiences.I specialize in HTML and CSS,Java Script and I also enjoy creating engaging video content in my free time.</p>
     </div>
   </section>
 
   <section id="projects" class="section">
-  <div class="container">
-    <h2>My Projects</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h3><i class="fas fa-laptop-code"></i> Portfolio Website</h3>
-        <p>A fully responsive portfolio site crafted with HTML and CSS to showcase my skills and projects.</p>
-        <a href="https://github.com/namananeja007" target="_blank" class="btn" style="margin-top: 10px;">View on GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3><i class="fas fa-gamepad"></i> The Bleeding Path</h3>
-        <p>A thrilling 2D platformer where sacrifice means survival. Play as an ancient warrior exploring cursed temples,
-           facing tough enemies and losing health, stamina, and limbs along the way.I made this game in a hackathon with a great team of three</p>
-        <a href="https://github.com/Blitzdevdaddy/the-bleeding-path" target="_blank" class="btn" style="margin-top: 10px;">GitHub Repo</a>
-      </div>
-      <div class="project-card">
-        <h3><i class="fas fa-video"></i> Fest Promotion Reels</h3>
-        <p>Creative promotional reels made for college events, designed to capture attention and build excitement through engaging video editing.</p>
-        <a href="https://www.instagram.com/yugaantar.sst/?e=09914d04-b429-443d-b06f-0975930051a9&g=5" target="_blank" class="btn" style="margin-top: 10px;">Instagram</a>
+    <div class="container">
+      <h2>My Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3><i class="fas fa-laptop-code"></i> Portfolio Website</h3>
+          <p>A fully responsive portfolio site crafted with HTML and CSS to showcase my skills and projects.</p>
+          <a href="https://github.com/namananeja007" target="_blank" class="btn" style="margin-top: 10px;">GitHub Repo</a>
+        </div>
+
+        <div class="project-card">
+          <h3><i class="fas fa-gamepad"></i> The Bleeding Path</h3>
+          <p>A thrilling 2D platformer where sacrifice means survival. Play as an ancient warrior exploring cursed temples,
+             facing tough enemies and losing health, stamina, and limbs along the way. I made this game in a hackathon with a great team of three.</p>
+          <a href="https://github.com/Blitzdevdaddy/the-bleeding-path" target="_blank" class="btn" style="margin-top: 10px;">GitHub Repo</a>
+        </div>
+
+        <div class="project-card">
+          <h3><i class="fas fa-video"></i> Fest Promotion Reels</h3>
+          <p>Creative promotional reels made for college events, designed to capture attention and build excitement through engaging video editing.</p>
+          <a href="https://www.instagram.com/yugaantar.sst/?e=09914d04-b429-443d-b06f-0975930051a9&g=5" target="_blank" class="btn" style="margin-top: 10px;">Instagram</a>
+        </div>
+
+        <div class="project-card">
+          <h3><i class="fas fa-volume-up"></i> A Sound Board</h3>
+          <p>A sound board where you can upload sounds and play preset audio clips.</p>
+          <a href="https://github.com/namananeja007/sound-board" target="_blank" class="btn" style="margin-top: 10px;">GitHub Repo</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
+  </section>
 
   <section id="contact" class="section">
     <div class="container">
       <h2>Get in Touch</h2>
       <p>If you'd like to connect, collaborate, or just say hello, feel free to reach out to me through social media or email.</p>
       <div class="socials">
-        <a href="https://www.linkedin.com/in/naman-aneja-758b06365/" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
-        <a href="https://github.com/namananeja007" target="_blank"><i class="fab fa-github"></i>GitHub</a>
-        <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=GTvVlcSBmXHpckVdpvPvgKgKVDNQxWSWgptRmxJBkwsgfHHhzmHjrsTpgNbzqMqJMnzxsLqzwLfdG" target="_blank"><i class="fas fa-envelope"></i>Gmail</a>
+        <a href="https://www.linkedin.com/in/naman-aneja-758b06365/" target="_blank" title="Connect on LinkedIn">
+          <i class="fab fa-linkedin"></i>
+          <span>LinkedIn</span>
+        </a>
+        <a href="https://github.com/namananeja007" target="_blank" title="View my GitHub">
+          <i class="fab fa-github"></i>
+          <span>GitHub</span>
+        </a>
+        <a href="mailto:namananeja@gmail.com" title="Send me an email">
+          <i class="fas fa-envelope"></i>
+          <span>Gmail</span>
+        </a>
       </div>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 Naman Aneja. All rights reserved.
+    <div class="footer-content">
+      <p>&copy; 2025 Naman Aneja. All rights reserved.</p>
+      <p class="footer-tagline">Crafted with <i class="fas fa-heart" style="color: #ff0000;"></i> by Naman Aneja</p>
+    </div>
   </footer>
+  <script>
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector("nav ul");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navMenu.classList.toggle("show");
+    });
+  </script>
+
 </body>
 </html>
